@@ -1,0 +1,23 @@
+﻿@page
+@model M004.Pages.RegistrierenModel
+
+<h2>Neuen User anlegen</h2>
+
+@*
+	asp-page-handler: Äquivalent zu asp-action, aber für Razor Pages
+
+	asp-page äquivalent zu asp-controller
+
+	WICHTIG: Methodenname muss korrekt sein (OnPostCreateUser)
+*@
+<form asp-page-handler="CreateUser" method="post">
+	Benutzername: <input type="text" name="user" />
+
+	<br />
+
+	Passwort: <input type="password" name="pw" />
+
+	<br />
+
+	<button type="submit">Registrieren</button>
+</form>

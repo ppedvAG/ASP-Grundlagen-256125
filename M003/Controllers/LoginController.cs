@@ -3,6 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace M003.Controllers;
 
+/// <summary>
+/// Eigener Controller
+/// 
+/// Login und Registrierungsportal
+/// - Controller
+/// - Register View
+/// - Login View
+/// - Container für die User (DI)
+/// </summary>
 public class LoginController(List<User> users) : Controller
 {
 	[HttpGet]

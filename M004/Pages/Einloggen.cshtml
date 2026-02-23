@@ -1,0 +1,16 @@
+﻿@page "/Einloggen"
+@model M004.Pages.EinloggenModel
+
+<h2>Anmelden</h2>
+
+<form asp-page-handler="LoginUser" method="post">
+	Benutzername: <input type="text" name="user" />
+
+	<br />
+
+	Passwort: <input type="password" name="pw" />
+
+	<br />
+
+	<button type="submit">Einloggen</button>
+</form>

@@ -1,0 +1,26 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+<form asp-action="Privacy">
+	Username: <input type="text" asp-for="UserName"/>
+	<br/>
+	Passwort: <input type="text" asp-for="Password"/>
+	<br/>
+	<button type="submit">Speichern</button>
+</form>
+
+@*
+	asp-route-...
+
+	Daten weitergeben außerhalb einer Form
+*@
+
+<a asp-action="Index" asp-route-zahl="3">
+	@*Button außerhalb einer Form muss so definiert werden*@
+	<button>Zurück zu Index</button>
+</a>

@@ -6,12 +6,24 @@
 
 <p>Use this page to detail your site's privacy policy.</p>
 
+@*
+	asp-validation-for
+
+	Aktiviert Validierung für das gegebene Feld über die DataAnnotations
+*@
 <form asp-action="Privacy">
 	Username: <input type="text" asp-for="UserName"/>
+	@* WICHTIG: </span> Tag separieren *@
+	<span asp-validation-for="UserName"></span>
+
 	<br/>
-	Passwort: <input type="text" asp-for="Password"/>
+	Passwort: <input type="text" asp-for="Password" />
+	<span asp-validation-for="Password"></span>
+
 	<br/>
 	<button type="submit">Speichern</button>
+	@* WICHTIG: </span> Tag separieren *@
+	<div asp-validation-summary="All"></div>
 </form>
 
 @*
@@ -24,3 +36,10 @@
 	@*Button außerhalb einer Form muss so definiert werden*@
 	<button>Zurück zu Index</button>
 </a>
+
+@*
+	Validierungsskripte aktivieren (wird in _Layout.cshtml eingebunden)
+*@
+@section Scripts {
+	@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

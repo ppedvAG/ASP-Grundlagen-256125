@@ -1,5 +1,6 @@
 using M007.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.Diagnostics;
 
 namespace M007.Controllers;
@@ -18,7 +19,7 @@ public class HomeController(ILogger<HomeController> logger) : Controller
 	/// </summary>
 	[FromHeader]
 	[FromQuery]
-	public string Sprache { get; set; }
+	public string? Sprache { get; set; }
 
 	[HttpGet]
 	public IActionResult Index([FromQuery] int zahl)
@@ -34,6 +35,12 @@ public class HomeController(ILogger<HomeController> logger) : Controller
 	/// </summary>
 	public IActionResult Privacy([Bind] User u)
 	{
+		//Serverseitige Validierung
+		if (u.UserName != null && !ModelState.IsValid)
+		{
+			return BadRequest();
+		}
+
 		return View(u);
 	}
 

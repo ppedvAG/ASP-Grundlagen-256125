@@ -1,0 +1,26 @@
+﻿@*
+	Registrierung
+
+	HTML-Formular mit Eingabefeldern
+	Beim Button-Klick müssen die Eingaben vom User ans Backend weitergeleitet werden
+	Benötigt Tag-Helper, name-Attribut
+*@
+
+<h2>Neuen User anlegen</h2>
+
+@*
+	asp-action: Methode im Backend ausführen
+	Über name= werden Daten aus den Feldern ans Backend weitergegeben
+	Der name hier muss mit dem Parameter im Backend übereinstimmen
+*@
+<form asp-action="CreateUser" method="post">
+	Benutzername: <input type="text" name="user"/>
+
+	<br />
+
+	Passwort: <input type="password" name="pw"/>
+
+	<br />
+
+	<button type="submit">Registrieren</button>
+</form>

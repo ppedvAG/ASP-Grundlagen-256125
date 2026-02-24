@@ -1,0 +1,31 @@
+﻿@*
+	@model
+
+	Definiert den Datentypen, der Daten die ans Frontend weitergeleitet werden
+	Standard: dynamic
+	WICHTIG: model mit kleinem m
+*@
+
+@model User
+
+@if (Model == null)
+{
+	<p>Hallo</p>
+	<br/>
+	<a asp-action="Einloggen">Einloggen</a>
+	<br />
+	<a asp-action="Registrieren">Registrieren</a>
+}
+else
+{
+	<p>Hallo @Model.UserName</p>
+}
+
+<cache enabled="true" expires-after="@TimeSpan.FromSeconds(10)">
+	<h1>@DateTime.Now</h1>
+</cache>
+
+<form asp-action="Upload" enctype="multipart/form-data" method="post">
+	<input type="file" name="dasFile"/>
+	<button type="submit">Upload</button>
+</form>

@@ -1,0 +1,20 @@
+﻿@using Microsoft.Extensions.Options
+@using System.Globalization
+@inject IOptions<RequestLocalizationOptions> options
+@{
+	IList<CultureInfo> cultures = options.Value.SupportedUICultures;
+
+	IEnumerable<SelectListItem> items = cultures.Select(e => new SelectListItem()
+	{
+		Text = e.EnglishName,
+		Value = e.TwoLetterISOLanguageName,
+		Selected = e.TwoLetterISOLanguageName == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+	});
+
+	string currentUrl = Context.Request.Path.Value.Split('/')[^1];
+}
+
+<form asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@currentUrl" method="post">
+	<select asp-items="@items" name="languageCode" onchange="this.form.submit();">
+	</select>
+</form>

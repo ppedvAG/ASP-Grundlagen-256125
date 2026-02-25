@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "APITest_2026_02_25",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

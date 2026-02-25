@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+	Username: <input type="text" id="username"/>
+	<br/>
+	Nachricht: <input type="text" id="message" />
+	<br/>
+	<button id="sendButton">Nachricht senden</button>
+	<br/>
+
+	<ul id="msgList"></ul>
+</div>
+
+<script src="~/lib/aspnet-signalr/signalr.js"></script>
+<script>
+	//Verbindung zum Hub herstellen
+	var connection = new signalR.HubConnectionBuilder().withUrl("/Chat").build();
+	connection.start();
+
+	//Auf Befehle von der Serverseite hören
+	//Benötigt den Namen der Methode, die Serverseitig in SendAsync definiert ist (ReceiveMessageFromServer)
+	connection.on("ReceiveMessageFromServer", function (msg, user) {
+		//Hier wird der Code, beim Empfang einer Nachricht ausgeführt
+		var li =document.createElement("li");
+		li.textContent = user + " sagt: " + msg;
+		document.getElementById("msgList").appendChild(li);
+	});
+
+	//Dem Senden Button eine Funktion geben
+	document.getElementById("sendButton").addEventListener("click", function (e) {
+		var u = document.getElementById("username").value;
+		var m = document.getElementById("message").value;
+		connection.invoke("SendMessage", m, u); //SendMessage muss hier mit der Methode im Hub übereinstimmen
+	});
+</script>
